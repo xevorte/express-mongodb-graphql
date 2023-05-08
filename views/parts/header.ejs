@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Xevodemy Server - <%= typeof title !== 'undefined' ? title : 'Any' %></title>
+  </head>
+  <body>
+    <% if(typeof heading !== 'undefined') { %>
+      <h2 style='margin-left: 22px'><%= heading %></h2>
+    <% } %>
+    <ul>
+      <% if(typeof navs === 'object') { %>
+        <% navs.map((nav) => { %>
+          <li><a href='<%= nav.path %>'><%= nav.label %></a></li>
+        <% }); %>
+      <% } %>
+    </ul>

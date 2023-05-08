@@ -1,0 +1,52 @@
+<%- include('../../parts/header.ejs') %>
+
+<a href='/suppliers/create' style='display: block; margin-top: 2rem; margin-bottom: 1rem;'>
+  <button>Add Supplier</button>
+</a>
+
+<table border='1' cellspacing='0' cellpadding='14'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Members</th>
+      <th>Address</th>
+      <th>Contact</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if(typeof data !== 'object' || data.length <= 0) { %>
+      <tr>
+        <td colspan='7'>
+          <center>
+            <strong>No Data</strong>
+          </center>
+        </td>
+      </tr>
+    <% } else { %>
+      <% data.map(el => { %>
+        <tr>
+          <td><%= el._id %></td>
+          <td><%= el.name %></td>
+          <td><%= el.description %></td>
+          <td><%= el.sizeOfMembers %></td>
+          <td><%= el.address %></td>
+          <td><%= el.contact %></td>
+          <td>
+            <a href='/suppliers/update/<%= el._id %>'>
+              <button>Update</button>
+            </a>
+            <form action='/suppliers/delete?_method=DELETE' method='POST'>
+              <input type='hidden' name='_id' id='_id' value='<%= el._id %>'>
+              <button type='submit' onclick="return confirm('Delete now?');">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    <% } %>  
+  </tbody>
+</table>
+
+<%- include('../../parts/footer.ejs') %>

@@ -1,0 +1,50 @@
+<%- include('../../parts/header.ejs') %>
+
+<h2 style='margin-top: 2rem;'>Insert new Supplier</h2>
+
+<form action='/suppliers/create' method='POST'>
+  <div class='form-group'>
+    <label for='name'>
+      <small>Name : </small>
+    </label>
+    <input type='text' name='name' id='name' placeholder='Masukkan nama' required>
+  </div>
+  <div class='form-group'>
+    <label for='description'>
+      <small>Description : </small>
+    </label>
+    <input type='text' name='description' id='description' placeholder='Masukkan deskripsi'>
+  </div>
+  <div class='form-group'>
+    <label for='type'>
+      <small>Type : </small>
+    </label>
+    <select name='type' id='type'>
+      <option selected hidden disabled>Pilih tipe</option>
+      <option value='Individual'>Individual</option>
+      <option value='Group'>Group</option>
+      <option value='Company'>Company</option>
+    </select>
+  </div>
+  <div class='form-group'>
+    <label for='sizeOfMembers'>
+      <small>Size of members : </small>
+    </label>
+    <input type='number' name='sizeOfMembers' id='sizeOfMembers' placeholder='Masukkan total jumlah anggota'>
+  </div>
+  <div class='form-group'>
+    <label for='address'>
+      <small>Address : </small>
+    </label>
+    <input type='text' name='address' id='address' placeholder='Masukkan alamat' required>
+  </div>
+  <div class='form-group'>
+    <label for='contact'>
+      <small>Contact : </small>
+    </label>
+    <input type='text' name='contact' id='contact' placeholder='Masukkan kontak' required>
+  </div>
+  <button type='submit' style='margin-top: 1rem;'>Submit Data</button>
+</form>
+
+<%- include('../../parts/footer.ejs') %>

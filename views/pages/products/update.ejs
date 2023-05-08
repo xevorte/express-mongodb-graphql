@@ -1,0 +1,55 @@
+<%- include('../../parts/header.ejs') %>
+
+<h2 style='margin-top: 2rem;'>Update Product <%= data.name %></h2>
+
+<form action='/products/update?_method=PUT' method='POST'>
+  <input type='hidden' name='_id' id='_id' value='<%= data._id %>'>
+  <div class='form-group'>
+    <label for='name'>
+      <small>Name : </small>
+    </label>
+    <input type='text' name='name' id='name' placeholder='Masukkan nama' value='<%= data.name %>' required>
+  </div>
+  <div class='form-group'>
+    <label for='description'>
+      <small>Description : </small>
+    </label>
+    <input type='text' name='description' id='description' placeholder='Masukkan deskripsi' value='<%= data.description%>' required>
+  </div>
+  <div class='form-group'>
+    <label for='stock'>
+      <small>Stock : </small>
+    </label>
+    <input type='number' name='stock' id='stock' placeholder='Masukkan stok produk' min='1' value='<%= data.stock %>' required>
+  </div>
+  <div class='form-group'>
+    <label for='price'>
+      <small>Price : </small>
+    </label>
+    <input type='number' name='price' id='price' min='1' placeholder='Masukkan harga' value='<%= data.price %>' required>
+  </div>
+  <div class='form-group'>
+    <label for='status'>
+      <small>Status : </small>
+    </label>
+    <select name='status' id='status'>
+      <option selected hidden disabled>Pilih status</option>
+      <option value='active' <%= data.status === 'active' ? 'selected' : '' %>>Active</option>
+      <option value='nonactive' <%= data.status === 'nonactive' ? 'selected' : '' %>>Nonactive</option>
+    </select>
+  </div>
+  <div class='form-group'>
+    <label for='supplier'>
+      <small>Supplier : </small>
+    </label>
+    <select name='supplier' id='supplier'>
+      <option selected hidden disabled>Pilih supplier</option>
+      <% suppliers?.map(el => { %>
+        <option value='<%= el?._id %>' <%= data?.supplier?._id.toString() === el?._id.toString() ? 'selected' : '' %>><%= el?.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <button type='submit' style='margin-top: 1rem;'>Submit Data</button>
+</form>
+
+<%- include('../../parts/footer.ejs') %>
